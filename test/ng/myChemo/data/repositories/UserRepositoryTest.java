@@ -19,6 +19,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testThatNewRepositoryIsEmpty(){
+
         assertEquals(0, userRepository.count());
     }
 

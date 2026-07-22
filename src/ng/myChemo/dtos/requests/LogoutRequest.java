@@ -10,4 +10,5 @@ public class LogoutRequest {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

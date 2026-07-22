@@ -1,10 +1,16 @@
 package ng.myChemo.data.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Drug {
     private int id;
     private String name;
+//    private int sellingPrice;
+//    private int quantity;
+//    private List<Batch> batches = new ArrayList<>();
+//
     private String brand;
     private LocalDate expiryDate;
     private int price;

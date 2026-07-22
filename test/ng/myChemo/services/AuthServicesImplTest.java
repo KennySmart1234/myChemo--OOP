@@ -1,5 +1,7 @@
 package ng.myChemo.services;
 
+import ng.myChemo.data.repositories.UserRepository;
+import ng.myChemo.data.repositories.UserRepositoryImpl;
 import ng.myChemo.dtos.requests.LoginRequest;
 import ng.myChemo.dtos.requests.LogoutRequest;
 import ng.myChemo.dtos.requests.RegisterUserRequest;
@@ -14,10 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AuthServicesImplTest {
 
     private AuthServicesImpl authServices;
+    private UserRepository userRepository;
     @BeforeEach
     public void setUp() {
 
         authServices = new AuthServicesImpl();
+        userRepository = new UserRepositoryImpl();
     }
 
     @Test
@@ -30,6 +34,7 @@ public class AuthServicesImplTest {
         RegisterUserResponse registerUserResponse = authServices.registerChemist(registerUserRequest);
         assertEquals("olatunji", registerUserResponse.getUsername().toLowerCase());
         assertEquals("Kenny", registerUserResponse.getFullName());
+        
 
     }
 
