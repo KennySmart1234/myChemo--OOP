@@ -4,20 +4,22 @@ import ng.myChemo.data.models.User;
 
 public interface UserRepository {
 
-    int count();
+    long count();
 
     User save(User user);
 
-    User findById(int id);
+    User findById(long userId);
 
-    void deleteById(int id);
+    void deleteById(long userId);
 
     void delete(User user);
 
     void deleteAll();
 
-    boolean existsById(int id);
+//    boolean existsById(i id);
 
     User findByUsername(String username);
+    void clear();
+    boolean existsById(long userId);
 
 }

@@ -4,19 +4,21 @@ import ng.myChemo.data.models.Drug;
 
 public interface DrugRepository {
 
-    int count();
+    long count();
 
     Drug save(Drug drug);
 
-    Drug findById(int id);
+    Drug findById(long drugId);
 
-    void deleteById(int id);
+    void deleteById(long drugId);
 
     void delete(Drug drug);
 
     void deleteAll();
 
-    boolean existsById(int id);
+//    boolean existsById(int id);
+
+    Drug findByNameAndBrand(String name,String brand);
 
 
 

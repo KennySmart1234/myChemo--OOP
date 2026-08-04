@@ -4,18 +4,17 @@ import ng.myChemo.data.models.DispensedDrugs;
 
 public interface DispensedDrugsRepository {
 
-    int count();
+    long count();
 
     DispensedDrugs save(DispensedDrugs dispensedDrugs);
 
-    DispensedDrugs findById(int id);
+    DispensedDrugs findById(long dispensedDrugs);
 
-    void deleteById(int id);
+    void deleteById(long dispensedDrugs);
 
     void delete(DispensedDrugs dispensedDrugs);
 
     void deleteAll();
 
-    boolean existsById(int id);
 
 }

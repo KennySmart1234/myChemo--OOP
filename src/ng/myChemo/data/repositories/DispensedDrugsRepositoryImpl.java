@@ -8,61 +8,87 @@ import java.util.List;
 public class DispensedDrugsRepositoryImpl implements DispensedDrugsRepository {
 
     private final List<DispensedDrugs> dispensedDrugs = new ArrayList<>();
-    private int count;
+    private long dispensedDrugsId = 0;
+
+
 
     @Override
-    public int count() {
-        return count;
+    public long count() {
+
+        return dispensedDrugs.size();
     }
 
 
     @Override
     public DispensedDrugs save(DispensedDrugs dispensedDrug) {
-        if (!dispensedDrugs.contains(dispensedDrug)) {
-            dispensedDrug.setId(++count);
-            dispensedDrugs.add(dispensedDrug);
-            return dispensedDrug;
+        if (isNew(dispensedDrug)) {
+            saveNew(dispensedDrug);
+        }else {
+            updateExisting(dispensedDrug);
         }
-        throw new IllegalArgumentException("Drug already exists");
+        return dispensedDrug;
+    }
+
+
+    private boolean isNew(DispensedDrugs dispensedDrug){
+
+        return dispensedDrug.getDispensedDrugsId() == 0;
+    }
+
+
+    private void saveNew(DispensedDrugs dispensedDrug){
+        if (dispensedDrugs.contains(dispensedDrug)) {
+            throw new IllegalArgumentException("DispensedDrugs already exists");
+        }
+        dispensedDrug.setDispensedDrugsId(++dispensedDrugsId);
+        dispensedDrugs.add(dispensedDrug);
 
     }
 
     @Override
-    public DispensedDrugs findById(int id) {
+    public void deleteById(long dispensedDrugsId) {
+        DispensedDrugs dispensedDrug = findById(dispensedDrugsId);
+        if (dispensedDrug != null) {
+            dispensedDrugs.remove(dispensedDrug);
+        }
+    }
+
+
+    @Override
+    public void delete(DispensedDrugs dispensedDrug) {
+        dispensedDrugs.remove(dispensedDrug);
+    }
+
+
+    private void updateExisting(DispensedDrugs dispensedDrug){
+        DispensedDrugs existingDispensedDrugs = findById(dispensedDrug.getDispensedDrugsId());
+        if (existingDispensedDrugs != null) {
+            throw new IllegalArgumentException("DispensedDrugs already exists");
+        }
+
+        int index = dispensedDrugs.indexOf(existingDispensedDrugs);
+        dispensedDrugs.set(index, dispensedDrug);
+
+    }
+
+
+
+    @Override
+    public void deleteAll(){
+        dispensedDrugs.clear();
+        dispensedDrugsId = 0;
+    }
+
+
+    @Override
+    public DispensedDrugs findById(long dispensedDrugsId) {
         for (DispensedDrugs dispensedDrug : dispensedDrugs) {
-            if (dispensedDrug.getId() == id) {
+            if (dispensedDrug.getDispensedDrugsId() == dispensedDrugsId) {
                 return dispensedDrug;
             }
         }
         return null;
     }
 
-    @Override
-    public void delete(DispensedDrugs drug) {
-        dispensedDrugs.remove(drug);
-        count--;
-    }
-
-    @Override
-    public void deleteById(int id) {
-        dispensedDrugs.remove(findById(id));
-        count--;
-    }
-
-    @Override
-    public void deleteAll(){
-        dispensedDrugs.clear();
-        count = 0;
-    }
-
-    @Override
-    public boolean existsById(int id) {
-        for (DispensedDrugs dispensedDrug : dispensedDrugs) {
-            if (dispensedDrug.getId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 }

@@ -40,7 +40,7 @@ public class UserRepositoryTest {
     @Test
     public void testThatUserCanBeFindUserById(){
         User savedUser = userRepository.save(new User());
-        User foundUser = userRepository.findById(savedUser.getId());
+        User foundUser = userRepository.findById(savedUser.getUserId());
         assertEquals(savedUser, foundUser);
     }
 
@@ -54,7 +54,7 @@ public class UserRepositoryTest {
     @Test
     public void testThatUserExistByID_ReturnsTrue(){
         User savedUser = userRepository.save(new User());
-        boolean foundUser = userRepository.existsById(savedUser.getId());
+        boolean foundUser = userRepository.existsById(savedUser.getUserId());
         assertTrue(foundUser);
     }
 
@@ -70,7 +70,7 @@ public class UserRepositoryTest {
     public void testThatNoDuplicate_IdNumberAmongUser(){
         User savedUserOne = userRepository.save(new User());
         User savedUserTwo = userRepository.save(new User());
-        assertNotEquals(savedUserOne.getId(), savedUserTwo.getId());
+        assertNotEquals(savedUserOne.getUserId(), savedUserTwo.getUserId());
 
     }
 
@@ -85,10 +85,10 @@ public class UserRepositoryTest {
     public void twoUsersSaved_TwoUserNoLongerExists_AfterDeletingByIdNumberTest(){
         User savedUserOne = userRepository.save(new User());
         User savedUserTwo = userRepository.save(new User());
-        userRepository.deleteById(savedUserOne.getId());
-        userRepository.deleteById(savedUserTwo.getId());
-        assertFalse(userRepository.existsById(savedUserOne.getId()));
-        assertFalse(userRepository.existsById(savedUserTwo.getId()));
+        userRepository.deleteById(savedUserOne.getUserId());
+        userRepository.deleteById(savedUserTwo.getUserId());
+        assertFalse(userRepository.existsById(savedUserOne.getUserId()));
+        assertFalse(userRepository.existsById(savedUserTwo.getUserId()));
 
         assertEquals(0, userRepository.count());
     }
@@ -101,7 +101,7 @@ public class UserRepositoryTest {
         User savedUserFour = userRepository.save(new User());
         User savedUserFive =  userRepository.save(new User());
         userRepository.deleteAll();
-        assertFalse(userRepository.existsById(savedUserOne.getId()));
+        assertFalse(userRepository.existsById(savedUserOne.getUserId()));
         assertEquals(0, userRepository.count());
 
     }
@@ -110,7 +110,7 @@ public class UserRepositoryTest {
     public void testThatUserCanBeDeleted(){
         User savedUserOne = userRepository.save(new User());
         userRepository.delete(savedUserOne);
-        assertFalse(userRepository.existsById(savedUserOne.getId()));
+        assertFalse(userRepository.existsById(savedUserOne.getUserId()));
         assertEquals(0, userRepository.count());
     }
 
@@ -122,10 +122,10 @@ public class UserRepositoryTest {
         User savedUserTwo = userRepository.save(new User());
         savedUserTwo.setUsername("Stephen");
 
-        User foundUsername = userRepository.findByUsername("kenny");
+        User foundUsername = userRepository.findByUsername("Kenny");
         assertEquals(savedUserOne, foundUsername);
 
-        User foundUsernameTwo = userRepository.findByUsername("stephen");
+        User foundUsernameTwo = userRepository.findByUsername("Stephen");
         assertEquals(savedUserTwo, foundUsernameTwo);
 
 

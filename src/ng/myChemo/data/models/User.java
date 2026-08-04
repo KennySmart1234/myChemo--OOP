@@ -4,7 +4,8 @@ public class User {
     private String username;
     private String password;
     private String fullName;
-    private int id;
+    private long userId;
+    private boolean isLoggedIn;
 
     public String getUsername() {
 
@@ -36,14 +37,23 @@ public class User {
         this.fullName = fullName;
     }
 
-    public int getId() {
+    public long getUserId() {
 
-        return id;
+        return userId;
     }
 
-    public void setId(int id) {
+    public void setUserId(long userId) {
 
-        this.id = id;
+        this.userId = userId;
+    }
+
+    public boolean isLoggedIn() {
+
+        return isLoggedIn;
+    }
+    public void setLoggedIn(boolean loggedIn) {
+
+        isLoggedIn = loggedIn;
     }
 
 }

@@ -1,17 +1,14 @@
-package ng.myChemo.data.models;
+package ng.myChemo.dtos.requests;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Drug {
+public class UpdateDrugRequest {
+
     private long drugId;
     private String drugName;
+    private String drugBrand;
     private BigDecimal sellingPrice;
     private long quantity;
-    private List<Batch> batches = new ArrayList<>();
-    private String brand;
-    private long batchId;
 
 
     public long getDrugId() {
@@ -30,6 +27,14 @@ public class Drug {
         this.drugName = drugName;
     }
 
+    public String getDrugBrand() {
+        return drugBrand;
+    }
+
+    public void setDrugBrand(String drugBrand) {
+        this.drugBrand = drugBrand;
+    }
+
     public BigDecimal getSellingPrice() {
         return sellingPrice;
     }
@@ -45,29 +50,4 @@ public class Drug {
     public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
-
-    public List<Batch> getBatches() {
-        return batches;
-    }
-
-    public void setBatches(List<Batch> batches) {
-        this.batches = batches;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public long getBatchId() {
-        return batchId;
-     }
-
-    public void setBatchId(long batchId) {
-        this.batchId = batchId;
-     }
-
 }

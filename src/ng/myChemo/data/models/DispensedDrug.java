@@ -1,48 +1,52 @@
 package ng.myChemo.data.models;
 
+import java.math.BigDecimal;
+
 public class DispensedDrug {
-    private int totalPrice;
+    private BigDecimal totalPrice;
     private Drug drug;
-    private int quantity;
-    private int id;
+    private long quantity;
+    private long dispensedDrugId;
+    private long batchId;
 
-    public int getTotalPrice() {
 
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
-
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     public Drug getDrug() {
-
         return drug;
     }
 
     public void setDrug(Drug drug) {
-
         this.drug = drug;
     }
 
-    public int getQuantity() {
-
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public int getId() {
-
-        return id;
+    public long getDispensedDrugId() {
+        return dispensedDrugId;
     }
 
-    public void setId(int id) {
+    public void setDispensedDrugId(long dispensedDrugId) {
+        this.dispensedDrugId = dispensedDrugId;
+    }
 
-        this.id = id;
+    public long getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(long batchId) {
+        this.batchId = batchId;
     }
 }
